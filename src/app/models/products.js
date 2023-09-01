@@ -4,11 +4,14 @@ const productSchema = new Schema(
   {
     title: String,
     description: String,
+    color: String,
+    weight: Number,
+    height: Number,
     price: Number,
     image: String,
     stock: {
       type: Number,
-      default: 1000,
+      default: 10,
     },
     active: {
       type: Boolean,
