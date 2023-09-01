@@ -4,7 +4,10 @@ const productSchema = new Schema(
   {
     title: String,
     description: String,
-    color: String,
+    color: {
+      type: String,
+      default: "#FFF",
+    },
     weight: Number,
     height: Number,
     price: Number,

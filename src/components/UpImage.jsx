@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { storageFirebase } from "../firebase/firebase-config";
+import { storageFirebase } from "@/firebase/firebase-config";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const UpImage = () => {
