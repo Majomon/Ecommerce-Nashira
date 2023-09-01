@@ -1,7 +1,8 @@
 import React from "react";
+import UpImage from "./components/UpImage";
 
-const HomePage = () => {
-  return <div>Home page</div>;
+const Home = () => {
+  return <UpImage />;
 };
 
-export default HomePage;
+export default Home;
