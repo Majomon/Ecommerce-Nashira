@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 
 function Navbar() {
   const { data: session } = useSession();
@@ -13,14 +14,34 @@ function Navbar() {
       </Link>
       {session?.user ? (
         <div className="flex gap-x-2 items-center">
-          <Link href={"/dashboard"}>DashBoard</Link>
+          {session?.user ? (
+            <h3>Bienvenido </h3>
+          ) : (
+            <Link href={"/dashboard"}>DashBoard</Link>
+          )}
+          <p>
+            {session.user.name} {/* {session.user.email} */}
+          </p>
+          <Image
+            width={30}
+            height={30}
+            src={session.user.image}
+            alt={session.user.name}
+            className="rounded-full cursor-pointer"
+          />
+          <button
+            onClick={async () => await signOut({ callbackUrl: "/" })}
+            className=" bg-red-500 px-3 py-1 rounded"
+          >
+            LogOut
+          </button>
         </div>
       ) : (
         <button
           onClick={() => signIn()}
-          className="bg-sky-400 px-3 py2 rounded"
+          className="bg-sky-400 px-3 py-2 rounded"
         >
-          Login
+          Sing in
         </button>
       )}
     </nav>
