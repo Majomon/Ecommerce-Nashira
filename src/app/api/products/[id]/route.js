@@ -24,24 +24,25 @@ export async function PUT(request, { params }) {
     stock,
     active,
   });
+  console.log(title);
   return NextResponse.json({ message: "Producto modificado" }, { status: 200 });
 }
 
 // Para pedir un producto por ID le paso el ID por params
 export async function GET(request, { params }) {
-  await connectMongoDb();
-  const product = await Product.findById(params.id);
-  return NextResponse.json({ product }, { status: 200 });
   /*   const id = request.nextUrl.searchParams.get("id");
   await connectMongoDb();
   const product = await Product.findOne({ _id: id });
+  return NextResponse.json({ product }, { status: 200 }); */
+
+  await connectMongoDb();
+  const product = await Product.findById(params.id);
   return NextResponse.json({ product }, { status: 200 });
- */
 }
 
 // Para borrar un producto por ID le paso el ID por params
-export async function DELETE({ params }) {
+export async function DELETE(request, { params }) {
   await connectMongoDb();
   await Product.findByIdAndDelete(params.id);
-  return NextResponse.json({ message: "Product delete" }, { status: 200 });
+  return NextResponse.json({ message: "Producto borrado" }, { status: 200 });
 }
