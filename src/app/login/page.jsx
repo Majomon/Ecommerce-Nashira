@@ -1,10 +1,10 @@
 import React from "react";
-import LogoGoogle from "../../assets/google_logo.png";
+import LogoGoogle from "../../../assets/google_logo.png";
 import Link from "next/link";
 import Image from "next/image";
 
 function page() {
-  const onSubmit = (data) => {
+  /*   const onSubmit = (data) => {
     setLoading(true);
     try {
       dispatch(loginUser(data));
@@ -30,7 +30,8 @@ function page() {
     } finally {
       setLoading(false);
     }
-  };
+  }; */
+
   return (
     <div className="w-full h-full min-h-screen flex justify-center items-center pt-12">
       <form className="w-[400px] min-h-[550px] h-full relative flex flex-col p-6 bg-light-50 dark:bg-transparent dark:shadow-[0_0_10px_0px_#fff] rounded">

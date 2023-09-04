@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
 
 export const useDarkMode = () => {
-  // Esto para que tome la configuracion de windows en caso de usar modo oscuro o claro
-  const [theme, setTheme] = useState(() => {
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      return "dark";
-    } else {
-      return "light";
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    // Verificar si estamos en el lado del cliente (navegador) antes de usar window
+    if (typeof window !== "undefined") {
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        setTheme("dark");
+      } else {
+        setTheme("light");
+      }
     }
-  });
+  }, []);
 
   useEffect(() => {
     if (theme === "dark") {
