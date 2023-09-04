@@ -1,14 +1,33 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 
 function Navbar() {
   const { data: session } = useSession();
+  const [theme, setTheme] = useState(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark"
+    } else {
+      return "light"
+    }
+  })
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.querySelector("html").classList.add("dark")
+    } else {
+      document.querySelector("html").classList.remove("dark")
+    }
+  }, [theme])
+
+  const handlerTheme = () => {
+    setTheme(prevTheme => prevTheme === "light" ? "dark" : "light")
+  }
 
   return (
-    <nav className="bg-slate-900 flex justify-between px-20 py-3 text-white items-center">
+    <nav className="bg-red-600	dark:bg-slate-900 flex justify-between px-20 py-3 text-white items-center">
       <Link href={"/"}>
         <h1>NextGoogle</h1>
       </Link>
@@ -44,6 +63,9 @@ function Navbar() {
           Sing in
         </button>
       )}
+      <button onClick={handlerTheme}>
+        Modo nocturno
+      </button>
     </nav>
   );
 }
