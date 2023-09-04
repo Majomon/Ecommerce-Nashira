@@ -1,31 +1,13 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import { useDarkMode } from "@/hooks/useDarkMode";
 
 function Navbar() {
   const { data: session } = useSession();
-  // Esto para que tome la configuracion de windows en caso de usar modo oscuro o claro
-  const [theme, setTheme] = useState(() => {
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      return "dark"
-    } else {
-      return "light"
-    }
-  })
-
-  useEffect(() => {
-    if (theme === "dark") {
-      document.querySelector("html").classList.add("dark")
-    } else {
-      document.querySelector("html").classList.remove("dark")
-    }
-  }, [theme])
-
-  const handlerTheme = () => {
-    setTheme(prevTheme => prevTheme === "light" ? "dark" : "light")
-  }
+  const { handlerTheme } = useDarkMode();
 
   return (
     <nav className="bg-red-600	dark:bg-slate-900 flex justify-between px-20 py-3 text-white items-center">
@@ -64,9 +46,7 @@ function Navbar() {
           Sing in
         </button>
       )}
-      <button onClick={handlerTheme}>
-        Modo nocturno
-      </button>
+      <button onClick={handlerTheme}>Modo nocturno</button>
     </nav>
   );
 }
