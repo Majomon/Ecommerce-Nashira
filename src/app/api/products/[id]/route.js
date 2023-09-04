@@ -24,7 +24,6 @@ export async function PUT(request, { params }) {
     stock,
     active,
   });
-  console.log(title);
   return NextResponse.json({ message: "Producto modificado" }, { status: 200 });
 }
 
