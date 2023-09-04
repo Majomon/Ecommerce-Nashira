@@ -6,6 +6,7 @@ import Image from "next/image";
 
 function Navbar() {
   const { data: session } = useSession();
+  // Esto para que tome la configuracion de windows en caso de usar modo oscuro o claro
   const [theme, setTheme] = useState(() => {
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
       return "dark"
