@@ -15,9 +15,10 @@ export async function GET() {
   return NextResponse.json({ products });
 }
 
-export async function DELETE(request) {
+// Tener en cuenta para cuando quiera hacer algo con "QUERYS"
+/* export async function DELETE(request) {
   const id = request.nextUrl.searchParams.get("id");
   await connectMongoDb();
   await Product.findByIdAndDelete(id);
   return NextResponse.json({ message: "Product delete" }, { status: 200 });
-}
+} */
